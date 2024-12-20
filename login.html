@@ -64,34 +64,6 @@
         button {
             margin-top: 10px;
         }
-        .hidden {
-            display: none;
-        }
-        .receipt {
-            margin-top: 20px;
-            background-color: white;
-            color: black;
-            padding: 15px;
-            border-radius: 5px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Only show receipt content when printing */
-        @media print {
-            body * {
-                visibility: hidden;
-            }
-            .receipt, .receipt * {
-                visibility: visible;
-            }
-            .container {
-                width: auto;
-                background: none;
-                padding: 0;
-                box-shadow: none;
-                color: black;
-            }
-        }
     </style>
 </head>
 <body>
@@ -143,66 +115,7 @@
             
             <button type="submit">Add Employee</button>
         </form>
-
-        <!-- Hidden after form submission -->
-        <div id="action-buttons" class="hidden">
-            <button id="printReceiptBtn">Print Receipt</button>
-            <button id="cancelBtn">Cancel</button>
-        </div>
-
-        <!-- Receipt Section -->
-        <div id="receipt" class="hidden receipt">
-            <h3>Employee Receipt</h3>
-            <p><strong>Name:</strong> <span id="receiptName"></span></p>
-            <p><strong>Position:</strong> <span id="receiptPosition"></span></p>
-            <p><strong>Rate Type:</strong> <span id="receiptRateType"></span></p>
-            <p><strong>Rate:</strong> $<span id="receiptRate"></span></p>
-        </div>
     </div>
-
-    <script>
-        const form = document.getElementById('submit');
-        const actionButtons = document.getElementById('action-buttons');
-        const receipt = document.getElementById('receipt');
-        const receiptName = document.getElementById('receiptName');
-        const receiptPosition = document.getElementById('receiptPosition');
-        const receiptRateType = document.getElementById('receiptRateType');
-        const receiptRate = document.getElementById('receiptRate');
-        
-        // Handle form submission
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            // Get form values
-            const name = document.getElementById('name').value;
-            const position = document.getElementById('position').value;
-            const rateType = document.getElementById('rate_type').value;
-            const rate = document.getElementById('rate').value;
-
-            // Display the receipt
-            receiptName.textContent = name;
-            receiptPosition.textContent = position;
-            receiptRateType.textContent = rateType;
-            receiptRate.textContent = rate;
-
-            // Show the action buttons and receipt
-            actionButtons.classList.remove('hidden');
-            receipt.classList.remove('hidden');
-            form.reset(); // Clear the form
-        });
-
-        // Print Receipt
-        document.getElementById('printReceiptBtn').addEventListener('click', function () {
-            // Trigger the print dialog
-            window.print();
-        });
-
-        // Cancel Action
-        document.getElementById('cancelBtn').addEventListener('click', function () {
-            actionButtons.classList.add('hidden');
-            receipt.classList.add('hidden');
-            form.reset(); // Reset the form
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

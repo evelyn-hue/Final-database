@@ -124,6 +124,15 @@
                 transform: scale(1.05);
             }
 
+            .print {
+                background-color:rgb(54, 136, 244);
+            }
+
+            .print:hover {
+                background-color:rgba(40, 69, 198, 0.87);
+                transform: scale(1.05);
+            }
+
             .search-container {
                 margin-bottom: 20px;
             }
@@ -165,8 +174,6 @@
                 color: #1976d2;  
                 font-size: 30px;  
             }
-
-
         </style>
     </head>
     <body>
@@ -192,7 +199,6 @@
                 <span style="flex: 1;">Actions</span>
             </div>
         </div>
-
         <?php
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
@@ -213,12 +219,16 @@
                         <button class="button delete">Delete</button>
                         <input type="hidden" name="id" value="' . $row["EmployeeID"] . '">
                     </form>
+
+                    <form method="POST" action="print.php">
+                        <button class="button print">Print</button>
+                        <input type="hidden" name="id" value="' . $row["EmployeeID"] . '">
+                    </form>
                 </div>';
             }
         }
         ?>
     </div>
-
     <script>
         function searchTable() {
             const input = document.getElementById('searchInput');
@@ -235,7 +245,7 @@
                 }
             });
         }
-    </script>
+</script>
 
     </body>
     </html>
